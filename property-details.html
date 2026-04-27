@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Details | Aura Luxe Estates</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#0A0A0A] text-white">
+
+    <nav class="p-8 flex justify-between items-center w-full z-50 border-b border-white/10">
+        <div class="text-2xl font-serif tracking-widest cursor-pointer" onclick="window.location.href='index.html'">
+            AURA <span class="text-[#C5A059]">LUXE</span>
+        </div>
+        <a href="index.html" class="text-[11px] tracking-widest uppercase border-b border-[#C5A059]">Back to Collection</a>
+    </nav>
+
+    <main id="details-container">
+        </main>
+
+    <footer class="py-20 text-center border-t border-white/5 mt-20">
+        <p class="text-[10px] tracking-[5px] text-gray-500 uppercase">© 2026 Aura Luxe Estates | Developed by Iyere</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // This script runs only on the details page
+        window.onload = function() {
+            renderDetails();
+        };
+    </script>
+</body>
+</html>

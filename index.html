@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aura Luxe Estates | Premium Property Gallery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <div id="loader" class="fixed inset-0 z-[100] bg-black flex items-center justify-center transition-opacity duration-700">
+    <div class="text-center">
+        <h2 class="text-2xl font-serif tracking-[10px] text-white animate-pulse">AURA <span class="text-[#C5A059]">LUXE</span></h2>
+        <div class="w-48 h-[1px] bg-white/10 mt-4 relative overflow-hidden">
+            <div id="loader-bar" class="absolute inset-0 bg-[#C5A059] -translate-x-full"></div>
+        </div>
+    </div>
+</div>
+
+<div id="scroll-progress" class="fixed top-0 left-0 h-[2px] bg-[#C5A059] z-[110] transition-all duration-100" style="width: 0%"></div>
+
+    <nav class="p-8 flex justify-between items-center fixed w-full z-50 bg-black/50 backdrop-blur-md">
+        <div class="text-2xl font-serif tracking-widest">AURA <span class="text-gold text-[#C5A059]">LUXE</span></div>
+        <div class="hidden md:flex gap-8 text-[11px] tracking-widest uppercase">
+            <a href="#">Properties</a>
+            <a href="#">About</a>
+            <a href="#">Invest</a>
+        </div>
+        <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" 
+        class="border border-[#C5A059] px-6 py-2 text-[10px] uppercase hover:bg-[#C5A059] hover:text-black transition-all">
+    Contact Advisor
+</button>
+    </nav>
+
+    <header class="h-[70vh] flex items-center justify-center text-center">
+        <div>
+            <h1 class="text-7xl font-serif italic mb-4">Aura of Grandeur.</h1>
+            <p class="tracking-[10px] uppercase text-xs text-gray-400">Luxury Living in the Heart of Nigeria</p>
+        </div>
+    </header>
+
+    <main id="property-grid" class="property-grid">
+        </main>
+
+
+<footer class="bg-[#050505] pt-20 pb-10 border-t border-white/5 px-10">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+        
+        <div class="col-span-1 md:col-span-2">
+            <h2 class="text-2xl font-serif tracking-widest mb-6">AURA <span class="text-[#C5A059]">LUXE</span></h2>
+            <p class="text-gray-500 text-sm max-w-sm leading-relaxed">
+                Defining the new standard of exotic real estate in Nigeria. From Ibeju-Lekki to the world, we curate only the most exceptional living experiences.
+            </p>
+        </div>
+
+        <div>
+            <h4 class="text-xs uppercase tracking-widest text-white mb-6">Explore</h4>
+            <ul class="text-gray-500 text-xs space-y-4 tracking-widest">
+                <li><a href="#" class="hover:text-[#C5A059] transition">The Collection</a></li>
+                <li><a href="#" class="hover:text-[#C5A059] transition">Investment Portal</a></li>
+                <li><a href="#" class="hover:text-[#C5A059] transition">Privacy Policy</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h4 class="text-xs uppercase tracking-widest text-white mb-6">Connect</h4>
+            <ul class="text-gray-500 text-xs space-y-4 tracking-widest">
+                <li>Ibeju-Lekki, Lagos, NG</li>
+                <li>contact@auraluxe.com</li>
+                <li class="text-[#C5A059] font-bold">+234 000 000 0000</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="border-t border-white/5 pt-10 flex flex-col md:row justify-between items-center gap-6">
+        <p class="text-[9px] text-gray-700 tracking-[4px] uppercase">
+            Designed & Developed by Geypey Web Studio
+        </p>
+        <div class="flex gap-6 text-gray-600 text-sm">
+            <a href="#"><i class="fab fa-instagram hover:text-white"></i></a>
+            <a href="#"><i class="fab fa-linkedin hover:text-white"></i></a>
+            <a href="#"><i class="fab fa-whatsapp hover:text-white"></i></a>
+        </div>
+    </div>
+</footer>
+
+    <script src="script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+    once: true
+  });
+</script>
+</body>
+</html>
