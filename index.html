@@ -2,12 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aura Luxe Estates | Premium Property Gallery</title>
+    
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/602/602182.png">
+
+    <meta property="og:title" content="Aura Luxe Estates | Exclusive Real Estate">
+    <meta property="og:description" content="Defining the new standard of exotic real estate in Nigeria. Explore our private collection.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1600585154340-be6161a56a0c">
+    <meta property="og:type" content="website">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -22,17 +30,18 @@
 
 <div id="scroll-progress" class="fixed top-0 left-0 h-[2px] bg-[#C5A059] z-[110] transition-all duration-100" style="width: 0%"></div>
 
-    <nav class="p-8 flex justify-between items-center fixed w-full z-50 bg-black/50 backdrop-blur-md">
-        <div class="text-2xl font-serif tracking-widest">AURA <span class="text-gold text-[#C5A059]">LUXE</span></div>
+    <nav class="p-6 md:p-8 flex justify-between items-center fixed w-full z-50 bg-black/50 backdrop-blur-md">
+        <div class="text-xl md:text-2xl font-serif tracking-widest">AURA <span class="text-gold text-[#C5A059]">LUXE</span></div>
         <div class="hidden md:flex gap-8 text-[11px] tracking-widest uppercase">
-            <a href="#">Properties</a>
-            <a href="#">About</a>
-            <a href="#">Invest</a>
+            <a href="#" class="hover:text-[#C5A059] transition-colors">Properties</a>
+            <a href="#" class="hover:text-[#C5A059] transition-colors">About</a>
+            <a href="#" class="hover:text-[#C5A059] transition-colors">Invest</a>
         </div>
+        
         <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" 
-        class="border border-[#C5A059] px-6 py-2 text-[10px] uppercase hover:bg-[#C5A059] hover:text-black transition-all">
-    Contact Advisor
-</button>
+        class="hidden md:block border border-[#C5A059] px-6 py-2 text-[10px] uppercase hover:bg-[#C5A059] hover:text-black transition-all">
+            Contact Advisor
+        </button>
     </nav>
 
     <header class="h-[70vh] flex items-center justify-center text-center">
@@ -42,11 +51,19 @@
         </div>
     </header>
 
+    <div class="flex justify-center gap-4 mt-8 mb-4 flex-wrap px-6">
+        <button onclick="filterProperties('All')" class="border border-[#C5A059] text-[#C5A059] px-6 py-2 text-[10px] uppercase tracking-widest hover:bg-[#C5A059] hover:text-black transition-all">All</button>
+        <button onclick="filterProperties('Duplex')" class="border border-white/20 text-gray-400 px-6 py-2 text-[10px] uppercase tracking-widest hover:border-[#C5A059] hover:text-[#C5A059] transition-all">Duplex</button>
+        <button onclick="filterProperties('Penthouse')" class="border border-white/20 text-gray-400 px-6 py-2 text-[10px] uppercase tracking-widest hover:border-[#C5A059] hover:text-[#C5A059] transition-all">Penthouse</button>
+        <button onclick="filterProperties('Mansion')" class="border border-white/20 text-gray-400 px-6 py-2 text-[10px] uppercase tracking-widest hover:border-[#C5A059] hover:text-[#C5A059] transition-all">Mansion</button>
+        <button onclick="filterProperties('Smart Villa')" class="border border-white/20 text-gray-400 px-6 py-2 text-[10px] uppercase tracking-widest hover:border-[#C5A059] hover:text-[#C5A059] transition-all">Smart Villa</button>
+    </div>
+
     <main id="property-grid" class="property-grid">
         </main>
 
 
-<footer class="bg-[#050505] pt-20 pb-10 border-t border-white/5 px-10">
+<footer id="contact" class="bg-[#050505] pt-20 pb-10 border-t border-white/5 px-10">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
         
         <div class="col-span-1 md:col-span-2">
@@ -95,5 +112,14 @@
     once: true
   });
 </script>
+
+<a href="https://wa.me/2348012345678" target="_blank" class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-2xl z-50 hover:scale-110 transition-transform">
+    <i class="fab fa-whatsapp text-3xl"></i>
+</a>
+
+<a href="https://wa.me/2348012345678" target="_blank" 
+   class="fixed bottom-6 right-6 bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-[0_4px_20px_rgba(37,211,102,0.4)] z-[100] hover:scale-110 transition-transform duration-300">
+    <i class="fab fa-whatsapp text-3xl"></i>
+</a>
 </body>
 </html>

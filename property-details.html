@@ -3,9 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Property Details | Aura Luxe Estates</title>
+    <title>Aura Luxe Estates | Premium Property Gallery</title>
+    
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/602/602182.png">
+
+    <meta property="og:title" content="Aura Luxe Estates | Exclusive Real Estate">
+    <meta property="og:description" content="Defining the new standard of exotic real estate in Nigeria. Explore our private collection.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1600585154340-be6161a56a0c">
+    <meta property="og:type" content="website">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-[#0A0A0A] text-white">
@@ -14,7 +23,7 @@
         <div class="text-2xl font-serif tracking-widest cursor-pointer" onclick="window.location.href='index.html'">
             AURA <span class="text-[#C5A059]">LUXE</span>
         </div>
-        <a href="index.html" class="text-[11px] tracking-widest uppercase border-b border-[#C5A059]">Back to Collection</a>
+        <a href="index.html?reload=true" class="text-[11px] tracking-widest uppercase border-b border-[#C5A059]">Back to Collection</a>
     </nav>
 
     <main id="details-container">
@@ -31,5 +40,10 @@
             renderDetails();
         };
     </script>
+
+    <a href="https://wa.me/2348012345678" target="_blank" 
+   class="fixed bottom-6 right-6 bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-[0_4px_20px_rgba(37,211,102,0.4)] z-[100] hover:scale-110 transition-transform duration-300">
+    <i class="fab fa-whatsapp text-3xl"></i>
+</a>
 </body>
 </html>

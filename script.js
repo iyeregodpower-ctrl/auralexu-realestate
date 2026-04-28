@@ -1,4 +1,4 @@
-// 1. THE DATABASE (Hardcoded for zero-maintenance hosting)
+// 1. THE DATABASE (With ROI, Maps, and Videos)
 const properties = [
     {
         id: "obsidian-manor",
@@ -6,15 +6,19 @@ const properties = [
         location: "Ibeju-Lekki, Lagos",
         price: "₦450,000,000",
         category: "Duplex",
-        isSold: false, // Change to true to mark this house as sold!
+        isSold: false,
         mainVideo: "./videos/home.mp4",
         thumbnail: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
         amenities: { beds: 5, baths: 6, size: "4,500 sqft" },
         description: "A masterpiece of modern architecture featuring smart home integration and a private infinity pool.",
+        roi: { yield: "12% - 15%", appreciation: "20% YOY", title: "Governor's Consent" },
+        mapUrl: "https://maps.google.com/maps?q=Ibeju-Lekki,Lagos&t=&z=13&ie=UTF8&iwloc=&output=embed",
         galleryImages: [
             "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80", 
             "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0", 
-            "https://images.unsplash.com/photo-1560448204-61dc36dc98c8"
+            "https://images.unsplash.com/photo-1560448204-61dc36dc98c8",
+            "https://images.unsplash.com/photo-1512917774080-9991f1c4c750", 
+            "https://images.unsplash.com/photo-1613490493576-7fde63acd811"
         ]
     },
     {
@@ -28,6 +32,8 @@ const properties = [
         thumbnail: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
         amenities: { beds: 4, baths: 4, size: "3,200 sqft" },
         description: "Experience the clouds with 360-degree views of the Atlantic Ocean and world-class finishes.",
+        roi: { yield: "10% - 12%", appreciation: "15% YOY", title: "C of O" },
+        mapUrl: "https://maps.google.com/maps?q=Victoria+Island,Lagos&t=&z=13&ie=UTF8&iwloc=&output=embed",
         galleryImages: [
             "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80", 
             "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
@@ -45,13 +51,14 @@ const properties = [
         thumbnail: "https://images.unsplash.com/photo-1613490493576-7fde63acd811",
         amenities: { beds: 6, baths: 7, size: "6,000 sqft" },
         description: "A lush retreat featuring floor-to-ceiling glass walls and a private cinema room.",
+        roi: { yield: "14% - 18%", appreciation: "22% YOY", title: "Governor's Consent" },
+        mapUrl: "https://maps.google.com/maps?q=Lekki+Phase+1,Lagos&t=&z=13&ie=UTF8&iwloc=&output=embed",
         galleryImages: [
             "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80", 
             "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0", 
             "https://images.unsplash.com/photo-1560448204-61dc36dc98c8"
         ]
     },
-
     {
         id: "the-onyx-residence",
         name: "The Onyx Residence",
@@ -63,6 +70,8 @@ const properties = [
         thumbnail: "https://images.unsplash.com/photo-1628624747186-a941c476b7ef",
         amenities: { beds: 6, baths: 7, size: "7,200 sqft" },
         description: "An ultra-modern sanctuary boasting dark brutalist architecture, biometric security, and a state-of-the-art underground auto gallery.",
+        roi: { yield: "8% - 10%", appreciation: "12% YOY", title: "Global C of O" },
+        mapUrl: "https://maps.google.com/maps?q=Banana+Island,Lagos&t=&z=14&ie=UTF8&iwloc=&output=embed",
         galleryImages: [
             "https://images.unsplash.com/photo-1600607686527-6fb886090705", 
             "https://images.unsplash.com/photo-1600210491369-e753d80a41f3", 
@@ -72,30 +81,28 @@ const properties = [
 ];
 
 // 2. BOOT UP THE RIGHT PAGE
-// Figure out which page the user is on and run the right function immediately
 if (document.getElementById('property-grid')) {
-    loadGallery();
+    loadGallery(properties);
 } else if (document.getElementById('details-container')) {
     renderDetails();
 }
 
 // 3. RENDER THE HOME PAGE GALLERY
-function loadGallery(dataToLoad = properties) {
+function loadGallery(dataToLoad) {
     const grid = document.getElementById('property-grid');
     if(!grid) return;
     
-    grid.innerHTML = ""; // Clear grid before adding new cards
+    grid.innerHTML = ""; 
 
     dataToLoad.forEach(house => {
-        // Logic for "Sold" properties
-        const isSold = house.isSold; // Pointing back to our local array!
+        const isSold = house.isSold; 
         const soldBadge = isSold ? `<div class="absolute top-4 right-4 bg-red-600 text-white px-4 py-1 text-[10px] font-bold z-20 shadow-lg">SOLD</div>` : '';
         const soldOverlay = isSold ? `grayscale opacity-50` : '';
         const buttonText = isSold ? 'Sold Out' : 'View Details';
         const buttonClass = isSold ? 'opacity-50 cursor-not-allowed pointer-events-none' : '';
 
         grid.innerHTML += `
-            <div class="property-card relative" ${isSold ? '' : `onclick="goToDetails('${house.id}')"`}>
+            <div class="property-card relative" data-aos="fade-up" ${isSold ? '' : `onclick="goToDetails('${house.id}')"`}>
                 ${soldBadge}
                 <div class="media-container ${soldOverlay}">
                     <img src="${house.thumbnail}" alt="${house.name}">
@@ -129,19 +136,30 @@ function goToDetails(id) {
 function setupHovers() {
     document.querySelectorAll('.property-card').forEach(card => {
         const video = card.querySelector('video');
-        if (video) { // Only add hover if video exists (skips sold houses)
+        if (video) { 
             card.addEventListener('mouseenter', () => video.play());
             card.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
         }
     });
 }
 
-// 6. RENDER THE PROPERTY DETAILS PAGE
+// 6. CATEGORY FILTER LOGIC
+function filterProperties(category) {
+    const grid = document.getElementById('property-grid');
+    if (!grid) return;
+    
+    const filteredList = category === 'All' 
+        ? properties 
+        : properties.filter(house => house.category === category);
+
+    loadGallery(filteredList);
+}
+
+// 7. RENDER THE PROPERTY DETAILS PAGE
 function renderDetails() {
     const detailsContainer = document.getElementById('details-container');
     if (!detailsContainer) return; 
 
-    // Read the ID from the website URL
     const params = new URLSearchParams(window.location.search);
     const houseId = params.get('id');
     const house = properties.find(p => p.id === houseId);
@@ -184,6 +202,22 @@ function renderDetails() {
                             <p class="text-xl">${house.amenities.size}</p>
                         </div>
                     </div>
+
+                    <h2 class="text-2xl font-serif mb-6 italic text-[#C5A059]">Investment Potential</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+                        <div class="bg-[#1A1A1A] p-6 border border-white/5 rounded">
+                            <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">Rental Yield</p>
+                            <p class="text-2xl font-bold">${house.roi.yield}</p>
+                        </div>
+                        <div class="bg-[#1A1A1A] p-6 border border-white/5 rounded">
+                            <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">Appreciation</p>
+                            <p class="text-2xl font-bold text-green-500"><i class="fas fa-arrow-trend-up"></i> ${house.roi.appreciation}</p>
+                        </div>
+                        <div class="bg-[#1A1A1A] p-6 border border-white/5 rounded">
+                            <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">Title</p>
+                            <p class="text-lg font-bold">${house.roi.title}</p>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="w-full md:w-80">
@@ -191,32 +225,78 @@ function renderDetails() {
                         <p class="text-xs text-gray-500 uppercase tracking-widest mb-2">Investment Price</p>
                         <h2 class="text-3xl font-bold mb-6">${house.price}</h2>
                         
-                        <a href="https://wa.me/2348012345678?text=Hello Aura Luxe! I am ready to view ${house.name}" target="_blank"
-   class="block w-full bg-[#C5A059] text-black text-center py-4 text-xs font-bold uppercase tracking-widest hover:bg-white transition-all">
-    Request Private Tour
-</a>
-                        <p class="text-[10px] text-gray-600 mt-6 text-center italic">Our advisors respond within 15 minutes.</p>
+                        <a href="https://wa.me/2348012345678?text=I am ready to view ${house.name}" target="_blank"
+                           class="block w-full bg-[#C5A059] text-black text-center py-4 text-xs font-bold uppercase tracking-widest hover:bg-white transition-all mb-4">
+                            Request Private Tour
+                        </a>
+
+                        <button onclick="openBrochureModal()" 
+                           class="block w-full border border-[#C5A059] text-[#C5A059] text-center py-4 text-xs font-bold uppercase tracking-widest hover:bg-[#C5A059] hover:text-black transition-all">
+                            <i class="fas fa-download mr-2"></i> Download Brochure
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
         
-        <section class="max-w-6xl mx-auto px-6 py-20">
-            <h2 class="text-3xl font-serif mb-10 italic">Inside the Residence</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <section class="max-w-6xl mx-auto px-6 py-10">
+            <h2 class="text-3xl font-serif mb-6 italic">Cinematic Tour</h2>
+            <div class="w-full aspect-video bg-black border border-white/10 rounded overflow-hidden shadow-2xl">
+                <video controls class="w-full h-full object-cover">
+                    <source src="${house.mainVideo}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </section>
+
+        <section class="max-w-6xl mx-auto px-6 py-10">
+            <div class="flex justify-between items-end mb-6">
+                <h2 class="text-3xl font-serif italic">Inside the Residence</h2>
+                <span class="text-[#C5A059] text-xs uppercase tracking-widest">Swipe to view →</span>
+            </div>
+            
+            <div class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-6" style="scrollbar-width: none; -ms-overflow-style: none;">
                 ${(house.galleryImages || []).map(img => `
-                    <div class="overflow-hidden bg-zinc-900 aspect-square group cursor-pointer">
+                    <div class="flex-none w-[85%] md:w-[45%] snap-center overflow-hidden bg-zinc-900 aspect-[4/3] group cursor-pointer border border-white/5 rounded">
                         <img src="${img}" 
-                             class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 transform group-hover:scale-110"
+                             class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 transform group-hover:scale-105"
                              onclick="openLightbox('${img}')">
                     </div>
                 `).join('')}
             </div>
         </section>
+
+        <section class="max-w-6xl mx-auto px-6 py-10 mb-20">
+            <h2 class="text-3xl font-serif mb-6 italic">Location Context</h2>
+            <div class="w-full h-96 border border-white/10 rounded overflow-hidden">
+                <iframe src="${house.mapUrl}" width="100%" height="100%" style="border:0; filter: grayscale(100%) invert(90%);" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </section>
+
+        <div id="brochure-modal" class="fixed inset-0 z-[200] bg-black/90 hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+            <div class="bg-[#1A1A1A] border border-[#C5A059]/30 p-10 max-w-md w-full relative">
+                <button onclick="closeBrochureModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h3 class="text-2xl font-serif text-[#C5A059] italic mb-2">Unlock the Details</h3>
+                <p class="text-sm text-gray-400 mb-6">Enter your details to receive the full floorplan and investment prospectus for ${house.name}.</p>
+                <form onsubmit="submitLead(event)">
+                    <input type="text" placeholder="Full Name" required class="w-full bg-black border border-white/10 p-3 mb-4 text-sm focus:outline-none focus:border-[#C5A059] text-white">
+                    <input type="email" placeholder="Email Address" required class="w-full bg-black border border-white/10 p-3 mb-6 text-sm focus:outline-none focus:border-[#C5A059] text-white">
+                    <button type="submit" class="w-full bg-[#C5A059] text-black font-bold uppercase tracking-widest text-xs py-4 hover:bg-white transition-colors">
+                        Get Instant Access
+                    </button>
+                </form>
+            </div>
+        </div>
     `;
+    
+    const style = document.createElement('style');
+    style.innerHTML = `::-webkit-scrollbar { display: none; }`;
+    document.head.appendChild(style);
 }
 
-// 7. LIGHTBOX FUNCTION (Full-screen images)
+// 8. LIGHTBOX FUNCTION
 function openLightbox(src) {
     const box = document.createElement('div');
     box.id = 'lightbox';
@@ -227,21 +307,28 @@ function openLightbox(src) {
     document.body.appendChild(box);
 }
 
-// 8. FILTER LOGIC
-function filterProperties(category) {
-    const grid = document.getElementById('property-grid');
-    if (!grid) return;
-    
-    // Create a new list of houses that match the category
-    const filtered = category === 'All' 
-        ? properties 
-        : properties.filter(h => h.category === category);
-
-    // Re-draw the grid with only those houses
-    loadGallery(filtered);
+// 9. MODAL LOGIC
+function openBrochureModal() {
+    const modal = document.getElementById('brochure-modal');
+    if (!modal) return;
+    modal.classList.remove('hidden');
+    setTimeout(() => { modal.classList.remove('opacity-0'); }, 10);
 }
 
-// 9. SAFE EVENT LISTENERS (Scroll & Loader)
+function closeBrochureModal() {
+    const modal = document.getElementById('brochure-modal');
+    if (!modal) return;
+    modal.classList.add('opacity-0');
+    setTimeout(() => { modal.classList.add('hidden'); }, 300);
+}
+
+function submitLead(event) {
+    event.preventDefault(); 
+    alert("Thank you! The brochure has been sent to your email. Our advisor will be in touch.");
+    closeBrochureModal();
+}
+
+// 10. BULLETPROOF SCROLL & LOADER LOGIC
 window.addEventListener('scroll', () => {
     const progressBar = document.getElementById('scroll-progress');
     if (progressBar) {
@@ -250,19 +337,42 @@ window.addEventListener('scroll', () => {
     }
 });
 
-window.addEventListener('load', () => {
+// Run loader safely without waiting for heavy videos
+document.addEventListener("DOMContentLoaded", () => {
     const loader = document.getElementById('loader');
     const bar = document.getElementById('loader-bar');
     
-    if (bar) {
-        bar.style.transition = "transform 1s ease";
-        bar.style.transform = "translateX(0)";
-    }
+    if (bar) bar.style.transform = "translateX(0)";
     
     if (loader) {
         setTimeout(() => {
             loader.style.opacity = "0";
-            setTimeout(() => loader.remove(), 700);
-        }, 1200);
+            setTimeout(() => { loader.style.display = "none"; loader.remove(); }, 500);
+        }, 800);
+    }
+});
+
+// 11. THE "DOM JIGGLE" BFCache FIX (Forces Mobile Safari to Unfreeze)
+window.addEventListener('pageshow', function (event) {
+    // If the phone restores the page from frozen memory (back button)
+    if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+        
+        // 1. Destroy the loading screen instantly if it got stuck
+        const loader = document.getElementById('loader');
+        if (loader) { loader.style.display = 'none'; loader.remove(); }
+
+        // 2. THE JIGGLE: Hide and show the whole website to jolt the graphics engine
+        document.body.style.display = 'none';
+        setTimeout(() => {
+            document.body.style.display = 'block';
+            
+            // 3. Force all AOS-hidden cards to become visible
+            const cards = document.querySelectorAll('.property-card');
+            cards.forEach(card => {
+                card.style.opacity = '1';
+                card.style.transform = 'none';
+            });
+            
+        }, 10); // 10 milliseconds is so fast the human eye won't even see it blink
     }
 });
