@@ -1,3 +1,6 @@
+* {
+    scroll-behavior: smooth;
+}
 :root {
     --gold: #C5A059;
     --dark: #0A0A0A;

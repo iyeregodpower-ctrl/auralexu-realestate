@@ -31,17 +31,38 @@
 <div id="scroll-progress" class="fixed top-0 left-0 h-[2px] bg-[#C5A059] z-[110] transition-all duration-100" style="width: 0%"></div>
 
     <nav class="p-6 md:p-8 flex justify-between items-center fixed w-full z-50 bg-black/50 backdrop-blur-md">
-        <div class="text-xl md:text-2xl font-serif tracking-widest">AURA <span class="text-gold text-[#C5A059]">LUXE</span></div>
+        <!-- Logo -->
+        <div class="text-xl md:text-2xl font-serif tracking-widest relative z-[60]">AURA <span class="text-gold text-[#C5A059]">LUXE</span></div>
+        
+        <!-- Desktop Menu -->
         <div class="hidden md:flex gap-8 text-[11px] tracking-widest uppercase">
-            <a href="#" class="hover:text-[#C5A059] transition-colors">Properties</a>
-            <a href="#" class="hover:text-[#C5A059] transition-colors">About</a>
-            <a href="#" class="hover:text-[#C5A059] transition-colors">Invest</a>
+            <a href="#about" class="hover:text-[#C5A059] transition-colors">The Firm</a>
+            <a href="#property-grid" class="hover:text-[#C5A059] transition-colors">Residences</a>
+            <a href="#invest" class="hover:text-[#C5A059] transition-colors">Ownership</a>
+            <a href="#faq" class="hover:text-[#C5A059] transition-colors">FAQ</a>
         </div>
         
-        <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" 
-        class="hidden md:block border border-[#C5A059] px-6 py-2 text-[10px] uppercase hover:bg-[#C5A059] hover:text-black transition-all">
+        <!-- Desktop Contact Button -->
+        <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" class="hidden md:block border border-[#C5A059] px-6 py-2 text-[10px] uppercase hover:bg-[#C5A059] hover:text-black transition-all relative z-[60]">
             Contact Advisor
         </button>
+
+        <!-- Mobile Hamburger Button -->
+        <button id="mobile-menu-btn" class="md:hidden text-white text-2xl relative z-[60] focus:outline-none">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Mobile Fullscreen Overlay Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-black/95 backdrop-blur-xl z-[55] flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500">
+        <div class="flex flex-col gap-10 text-center text-sm tracking-[5px] uppercase">
+            <a href="#about" class="mobile-link hover:text-[#C5A059] transition-colors">The Firm</a>
+            <a href="#property-grid" class="mobile-link hover:text-[#C5A059] transition-colors">Residences</a>
+            <a href="#invest" class="mobile-link hover:text-[#C5A059] transition-colors">Ownership</a>
+            <a href="#faq" class="mobile-link hover:text-[#C5A059] transition-colors">FAQ</a>
+            <a href="https://wa.me/2348012345678" target="_blank" class="mt-4 text-[#C5A059] border border-[#C5A059] px-8 py-4 text-[10px] hover:bg-[#C5A059] hover:text-black transition-colors">Contact Advisor</a>
+        </div>
+    </div>
     </nav>
 
     <!-- UPGRADED HERO SECTION WITH BACKGROUND IMAGE -->
@@ -61,7 +82,7 @@
     </header>
 
     <!-- DEVELOPER PEDIGREE / TRUST SECTION -->
-    <section class="border-y border-white/5 bg-[#050505] py-16 relative z-10" data-aos="fade-up">
+    <section id="about" class="border-y border-white/5 bg-[#050505] py-16 relative z-10" data-aos="fade-up">
         <div class="max-w-6xl mx-auto px-6">
             <p class="text-center text-[#C5A059] text-[10px] uppercase tracking-[4px] mb-12">The Aura Luxe Pedigree</p>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center" id="counter-section">
@@ -85,54 +106,7 @@
         </div>
     </section>
 
-    <!-- FAQ SECTION -->
-    <section class="py-24 bg-[#0A0A0A] relative z-10" id="faq">
-        <div class="max-w-4xl mx-auto px-6">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="text-[#C5A059] text-[10px] uppercase tracking-[4px]">Clarity & Transparency</span>
-                <h2 class="text-4xl md:text-5xl font-serif italic mt-4">Frequently Asked Questions</h2>
-            </div>
-
-            <div class="space-y-4" id="faq-container" data-aos="fade-up" data-aos-delay="100">
-                
-                <!-- FAQ Item 1 -->
-                <div class="faq-item border border-white/10 bg-[#1A1A1A] rounded overflow-hidden">
-                    <button class="w-full text-left p-6 flex justify-between items-center focus:outline-none faq-btn">
-                        <span class="font-serif text-lg text-white">What type of title document comes with the properties?</span>
-                        <i class="fas fa-plus text-[#C5A059] transition-transform duration-300"></i>
-                    </button>
-                    <!-- max-h-0 keeps it hidden until clicked -->
-                    <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 px-6">
-                        <p class="text-gray-400 text-sm pb-6 leading-relaxed">All our properties in Ibeju-Lekki come with a verified Governor's Consent, while our Banana Island and Victoria Island properties hold a Global Certificate of Occupancy (C of O). We provide full legal packets for your lawyers to review before any deposit is made.</p>
-                    </div>
-                </div>
-
-                <!-- FAQ Item 2 -->
-                <div class="faq-item border border-white/10 bg-[#1A1A1A] rounded overflow-hidden">
-                    <button class="w-full text-left p-6 flex justify-between items-center focus:outline-none faq-btn">
-                        <span class="font-serif text-lg text-white">Can Nigerians in the diaspora purchase remotely?</span>
-                        <i class="fas fa-plus text-[#C5A059] transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 px-6">
-                        <p class="text-gray-400 text-sm pb-6 leading-relaxed">Absolutely. Over 40% of our clients reside in the US, UK, and Canada. We offer secure virtual walkthroughs, remote digital contract signing, and verified escrow payment channels to ensure your investment is protected from abroad.</p>
-                    </div>
-                </div>
-
-                <!-- FAQ Item 3 -->
-                <div class="faq-item border border-white/10 bg-[#1A1A1A] rounded overflow-hidden">
-                    <button class="w-full text-left p-6 flex justify-between items-center focus:outline-none faq-btn">
-                        <span class="font-serif text-lg text-white">Do you offer flexible payment plans?</span>
-                        <i class="fas fa-plus text-[#C5A059] transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 px-6">
-                        <p class="text-gray-400 text-sm pb-6 leading-relaxed">Yes. We understand that liquidity is key for our investors. We offer structured milestone payments, typically requiring a 30% initial commitment with the balance spread across 12 to 24 months, depending on the specific estate.</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
+    
     <div class="flex justify-center gap-4 mt-8 mb-4 flex-wrap px-6">
         <button onclick="filterProperties('All')" class="border border-[#C5A059] text-[#C5A059] px-6 py-2 text-[10px] uppercase tracking-widest hover:bg-[#C5A059] hover:text-black transition-all">All</button>
         <button onclick="filterProperties('Duplex')" class="border border-white/20 text-gray-400 px-6 py-2 text-[10px] uppercase tracking-widest hover:border-[#C5A059] hover:text-[#C5A059] transition-all">Duplex</button>
@@ -143,6 +117,64 @@
 
     <main id="property-grid" class="property-grid">
         </main>
+
+    <!-- ACQUISITION ROADMAP / HOW IT WORKS -->
+    <section id="invest" class="py-24 bg-[#1A1A1A] relative z-10 border-y border-white/5">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-[#C5A059] text-[10px] uppercase tracking-[4px]">Simplified Acquisition</span>
+                <h2 class="text-4xl md:text-5xl font-serif italic mt-4">The Path to Ownership.</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+                <!-- Decorative line connecting the steps on desktop -->
+                <div class="hidden md:block absolute top-12 left-[10%] right-[10%] h-[1px] bg-white/10 z-0"></div>
+
+                <!-- Step 1 -->
+                <div class="relative z-10 text-center" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-24 h-24 mx-auto bg-[#0A0A0A] border border-[#C5A059] rounded-full flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(197,160,89,0.1)]">
+                        <i class="fas fa-calendar-check text-2xl text-[#C5A059]"></i>
+                    </div>
+                    <h3 class="text-xl font-serif text-white mb-3">1. Private Consultation</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed px-4">Schedule a virtual or physical walkthrough with our senior property advisors to select your ideal unit.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative z-10 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-24 h-24 mx-auto bg-[#0A0A0A] border border-white/10 rounded-full flex items-center justify-center mb-6 hover:border-[#C5A059] transition-colors duration-300">
+                        <i class="fas fa-file-contract text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-serif text-white mb-3">2. Legal Verification</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed px-4">Receive the comprehensive legal packet, C of O, and title documents for your legal team's strict review.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative z-10 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-24 h-24 mx-auto bg-[#0A0A0A] border border-white/10 rounded-full flex items-center justify-center mb-6 hover:border-[#C5A059] transition-colors duration-300">
+                        <i class="fas fa-file-contract text-2xl text-white"></i>
+                    </div>
+                        <h3 class="text-xl font-serif text-white mb-3">3. Secure Commitment</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed px-4">Execute the contract and initiate the initial 30% deposit via our secured escrow or direct banking partners.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="relative z-10 text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-24 h-24 mx-auto bg-[#0A0A0A] border border-[#C5A059] rounded-full flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(197,160,89,0.1)]">
+                        <i class="fas fa-key text-2xl text-[#C5A059]"></i>
+                    </div>
+                    <h3 class="text-xl font-serif text-white mb-3">4. Key Handover</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed px-4">Complete your structured payment plan and step into your new reality. Welcome to the Aura Luxe family.</p>
+                </div>
+            </div>
+            
+            <!-- Final Push Button -->
+            <div class="mt-16 text-center" data-aos="fade-up" data-aos-delay="400">
+                <a href="https://wa.me/2348012345678" target="_blank" class="inline-block bg-[#C5A059] text-black px-10 py-4 text-xs font-bold uppercase tracking-widest hover:bg-white transition-all">
+                    Start Step 1 Today
+                </a>
+            </div>
+        </div>
+    </section>
 
 <!-- TESTIMONIALS / SOCIAL PROOF SECTION -->
     <section class="py-24 bg-[#050505] relative z-10 border-y border-white/5">
@@ -205,6 +237,54 @@
         </div>
     </section>
 
+    <!-- FAQ SECTION -->
+    <section class="py-24 bg-[#0A0A0A] relative z-10" id="faq">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-[#C5A059] text-[10px] uppercase tracking-[4px]">Clarity & Transparency</span>
+                <h2 class="text-4xl md:text-5xl font-serif italic mt-4">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="space-y-4" id="faq-container" data-aos="fade-up" data-aos-delay="100">
+                
+                <!-- FAQ Item 1 -->
+                <div class="faq-item border border-white/10 bg-[#1A1A1A] rounded overflow-hidden">
+                    <button class="w-full text-left p-6 flex justify-between items-center focus:outline-none faq-btn">
+                        <span class="font-serif text-lg text-white">What type of title document comes with the properties?</span>
+                        <i class="fas fa-plus text-[#C5A059] transition-transform duration-300"></i>
+                    </button>
+                    <!-- max-h-0 keeps it hidden until clicked -->
+                    <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 px-6">
+                        <p class="text-gray-400 text-sm pb-6 leading-relaxed">All our properties in Ibeju-Lekki come with a verified Governor's Consent, while our Banana Island and Victoria Island properties hold a Global Certificate of Occupancy (C of O). We provide full legal packets for your lawyers to review before any deposit is made.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item border border-white/10 bg-[#1A1A1A] rounded overflow-hidden">
+                    <button class="w-full text-left p-6 flex justify-between items-center focus:outline-none faq-btn">
+                        <span class="font-serif text-lg text-white">Can Nigerians in the diaspora purchase remotely?</span>
+                        <i class="fas fa-plus text-[#C5A059] transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 px-6">
+                        <p class="text-gray-400 text-sm pb-6 leading-relaxed">Absolutely. Over 40% of our clients reside in the US, UK, and Canada. We offer secure virtual walkthroughs, remote digital contract signing, and verified escrow payment channels to ensure your investment is protected from abroad.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item border border-white/10 bg-[#1A1A1A] rounded overflow-hidden">
+                    <button class="w-full text-left p-6 flex justify-between items-center focus:outline-none faq-btn">
+                        <span class="font-serif text-lg text-white">Do you offer flexible payment plans?</span>
+                        <i class="fas fa-plus text-[#C5A059] transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 px-6">
+                        <p class="text-gray-400 text-sm pb-6 leading-relaxed">Yes. We understand that liquidity is key for our investors. We offer structured milestone payments, typically requiring a 30% initial commitment with the balance spread across 12 to 24 months, depending on the specific estate.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
 <!-- TRUST & AUTHORITY PARTNERS -->
     <section class="py-12 bg-[#0A0A0A] relative z-10 border-t border-white/5">
         <div class="max-w-5xl mx-auto px-6">
@@ -229,6 +309,31 @@
                 </div>
             </div>
             
+        </div>
+    </section>
+
+<!-- VIP ACCESS / LEAD CAPTURE SECTION -->
+    <section class="py-24 relative z-10 border-t border-white/5 bg-cover bg-center" style="background-image: linear-gradient(to right, rgba(10, 10, 10, 0.95), rgba(10, 10, 10, 0.8)), url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=2000');">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div data-aos="fade-up">
+                <span class="text-[#C5A059] text-[10px] uppercase tracking-[4px]">Private Access</span>
+                <h2 class="text-4xl md:text-5xl font-serif italic mt-4 text-white">Join The Inner Circle.</h2>
+                <p class="text-gray-400 text-sm mt-6 mb-10 max-w-lg mx-auto leading-relaxed">
+                    Not all masterpieces are presented to the public. Enter your details to receive our private dossier of off-market acquisitions and pre-launch luxury developments.
+                </p>
+            </div>
+            
+            <form class="flex flex-col md:flex-row gap-4 justify-center max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100" onsubmit="event.preventDefault(); alert('Welcome to the Inner Circle. Our advisors will be in touch shortly.');">
+                <input type="text" placeholder="Full Name" required class="flex-1 bg-black/60 backdrop-blur-md border border-white/10 p-4 text-sm focus:outline-none focus:border-[#C5A059] text-white transition-colors">
+                <input type="email" placeholder="Email Address" required class="flex-1 bg-black/60 backdrop-blur-md border border-white/10 p-4 text-sm focus:outline-none focus:border-[#C5A059] text-white transition-colors">
+                <button type="submit" class="bg-[#C5A059] text-black px-10 py-4 text-xs font-bold uppercase tracking-widest hover:bg-white transition-all shadow-[0_0_20px_rgba(197,160,89,0.2)]">
+                    Request Access
+                </button>
+            </form>
+            
+            <p class="text-[9px] text-gray-500 uppercase tracking-widest mt-8" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-lock mr-2 text-[#C5A059]"></i> Client privacy is strictly protected under NDA.
+            </p>
         </div>
     </section>
 

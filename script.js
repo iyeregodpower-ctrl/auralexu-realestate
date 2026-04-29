@@ -457,3 +457,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// 14. MOBILE MENU LOGIC
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+    
+    if(!mobileBtn) return;
+
+    const icon = mobileBtn.querySelector('i');
+
+    // Open/Close menu when clicking the hamburger icon
+    mobileBtn.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.contains('opacity-100');
+        if (isOpen) {
+            mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
+            mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+            icon.classList.replace('fa-times', 'fa-bars');
+        } else {
+            mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+            mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
+            icon.classList.replace('fa-bars', 'fa-times');
+        }
+    });
+
+    // Close menu automatically when a link is clicked
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
+            mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+            icon.classList.replace('fa-times', 'fa-bars');
+        });
+    });
+});
