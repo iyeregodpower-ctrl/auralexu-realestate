@@ -385,3 +385,75 @@ window.addEventListener('pageshow', (event) => {
         if (typeof AOS !== 'undefined') AOS.refresh();
     }
 });
+
+// 12. NUMBER COUNTER ANIMATION (Developer Pedigree)
+document.addEventListener('DOMContentLoaded', () => {
+    const counterSection = document.getElementById('counter-section');
+    if (!counterSection) return;
+
+    // This checks if the user has scrolled down to the numbers
+    const observer = new IntersectionObserver((entries) => {
+        if(entries[0].isIntersecting) {
+            
+            // Run the counting animation
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const speed = 100; // Lower number = faster counting
+                
+                const updateCount = () => {
+                    const count = +counter.innerText;
+                    const increment = target / speed;
+
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + increment);
+                        setTimeout(updateCount, 20);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            });
+            
+            // Stop watching once it counts up (so it doesn't repeat)
+            observer.disconnect(); 
+        }
+    }, { threshold: 0.5 }); // Triggers when the section is 50% visible on screen
+    
+    observer.observe(counterSection);
+});
+
+// 13. FAQ ACCORDION LOGIC
+document.addEventListener('DOMContentLoaded', () => {
+    const faqButtons = document.querySelectorAll('.faq-btn');
+    
+    faqButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const faqItem = button.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+            const icon = button.querySelector('i');
+
+            // Optional: Close all other open FAQs when you click a new one
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) {
+                    item.querySelector('.faq-answer').style.maxHeight = null;
+                    item.querySelector('i').classList.replace('fa-minus', 'fa-plus');
+                    item.querySelector('i').style.transform = 'rotate(0deg)';
+                }
+            });
+
+            // Toggle the current FAQ open or closed
+            if (answer.style.maxHeight) {
+                // If it's open, close it
+                answer.style.maxHeight = null;
+                icon.classList.replace('fa-minus', 'fa-plus');
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                // If it's closed, open it dynamically to its exact height
+                answer.style.maxHeight = answer.scrollHeight + "px";
+                icon.classList.replace('fa-plus', 'fa-minus');
+                icon.style.transform = 'rotate(180deg)';
+            }
+        });
+    });
+});

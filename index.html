@@ -44,12 +44,94 @@
         </button>
     </nav>
 
-    <header class="h-[70vh] flex items-center justify-center text-center">
-        <div>
-            <h1 class="text-7xl font-serif italic mb-4">Aura of Grandeur.</h1>
-            <p class="tracking-[10px] uppercase text-xs text-gray-400">Luxury Living in the Heart of Nigeria</p>
+    <!-- UPGRADED HERO SECTION WITH BACKGROUND IMAGE -->
+    <header class="h-[80vh] flex items-center justify-center text-center relative bg-cover bg-center bg-no-repeat" 
+            style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2000');">
+        
+        <!-- The Dark Overlay (This keeps the text readable and premium) -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-[#0A0A0A]"></div>
+
+        <!-- The Text Content -->
+        <div class="relative z-10 px-6 mt-16" data-aos="fade-up" data-aos-duration="1500">
+            <h1 class="text-6xl md:text-8xl font-serif italic mb-6 text-white drop-shadow-2xl">Aura of Grandeur.</h1>
+            <p class="tracking-[8px] md:tracking-[12px] uppercase text-xs md:text-sm text-gray-300 drop-shadow-md">
+                Luxury Living in the Heart of Nigeria
+            </p>
         </div>
     </header>
+
+    <!-- DEVELOPER PEDIGREE / TRUST SECTION -->
+    <section class="border-y border-white/5 bg-[#050505] py-16 relative z-10" data-aos="fade-up">
+        <div class="max-w-6xl mx-auto px-6">
+            <p class="text-center text-[#C5A059] text-[10px] uppercase tracking-[4px] mb-12">The Aura Luxe Pedigree</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center" id="counter-section">
+                <div>
+                    <h3 class="text-4xl md:text-5xl font-serif text-white mb-2"><span class="counter" data-target="15">0</span>+</h3>
+                    <p class="text-gray-500 text-[10px] uppercase tracking-widest mt-2">Years of Excellence</p>
+                </div>
+                <div>
+                    <h3 class="text-4xl md:text-5xl font-serif text-white mb-2"><span class="counter" data-target="420">0</span>+</h3>
+                    <p class="text-gray-500 text-[10px] uppercase tracking-widest mt-2">Luxury Units Delivered</p>
+                </div>
+                <div>
+                    <h3 class="text-4xl md:text-5xl font-serif text-white mb-2">₦<span class="counter" data-target="50">0</span>B+</h3>
+                    <p class="text-gray-500 text-[10px] uppercase tracking-widest mt-2">Portfolio Value</p>
+                </div>
+                <div>
+                    <h3 class="text-4xl md:text-5xl font-serif text-white mb-2"><span class="counter" data-target="100">0</span>%</h3>
+                    <p class="text-gray-500 text-[10px] uppercase tracking-widest mt-2">Verified Titles</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="py-24 bg-[#0A0A0A] relative z-10" id="faq">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-[#C5A059] text-[10px] uppercase tracking-[4px]">Clarity & Transparency</span>
+                <h2 class="text-4xl md:text-5xl font-serif italic mt-4">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="space-y-4" id="faq-container" data-aos="fade-up" data-aos-delay="100">
+                
+                <!-- FAQ Item 1 -->
+                <div class="faq-item border border-white/10 bg-[#1A1A1A] rounded overflow-hidden">
+                    <button class="w-full text-left p-6 flex justify-between items-center focus:outline-none faq-btn">
+                        <span class="font-serif text-lg text-white">What type of title document comes with the properties?</span>
+                        <i class="fas fa-plus text-[#C5A059] transition-transform duration-300"></i>
+                    </button>
+                    <!-- max-h-0 keeps it hidden until clicked -->
+                    <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 px-6">
+                        <p class="text-gray-400 text-sm pb-6 leading-relaxed">All our properties in Ibeju-Lekki come with a verified Governor's Consent, while our Banana Island and Victoria Island properties hold a Global Certificate of Occupancy (C of O). We provide full legal packets for your lawyers to review before any deposit is made.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item border border-white/10 bg-[#1A1A1A] rounded overflow-hidden">
+                    <button class="w-full text-left p-6 flex justify-between items-center focus:outline-none faq-btn">
+                        <span class="font-serif text-lg text-white">Can Nigerians in the diaspora purchase remotely?</span>
+                        <i class="fas fa-plus text-[#C5A059] transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 px-6">
+                        <p class="text-gray-400 text-sm pb-6 leading-relaxed">Absolutely. Over 40% of our clients reside in the US, UK, and Canada. We offer secure virtual walkthroughs, remote digital contract signing, and verified escrow payment channels to ensure your investment is protected from abroad.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item border border-white/10 bg-[#1A1A1A] rounded overflow-hidden">
+                    <button class="w-full text-left p-6 flex justify-between items-center focus:outline-none faq-btn">
+                        <span class="font-serif text-lg text-white">Do you offer flexible payment plans?</span>
+                        <i class="fas fa-plus text-[#C5A059] transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 px-6">
+                        <p class="text-gray-400 text-sm pb-6 leading-relaxed">Yes. We understand that liquidity is key for our investors. We offer structured milestone payments, typically requiring a 30% initial commitment with the balance spread across 12 to 24 months, depending on the specific estate.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
 
     <div class="flex justify-center gap-4 mt-8 mb-4 flex-wrap px-6">
         <button onclick="filterProperties('All')" class="border border-[#C5A059] text-[#C5A059] px-6 py-2 text-[10px] uppercase tracking-widest hover:bg-[#C5A059] hover:text-black transition-all">All</button>
@@ -62,6 +144,93 @@
     <main id="property-grid" class="property-grid">
         </main>
 
+<!-- TESTIMONIALS / SOCIAL PROOF SECTION -->
+    <section class="py-24 bg-[#050505] relative z-10 border-y border-white/5">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-[#C5A059] text-[10px] uppercase tracking-[4px]">The Inner Circle</span>
+                <h2 class="text-4xl md:text-5xl font-serif italic mt-4">Word of Mouth.</h2>
+            </div>
+            
+            <!-- Swipeable Container -->
+            <div class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 hide-scrollbar" style="scrollbar-width: none; -ms-overflow-style: none;">
+                
+                <!-- Testimonial 1 -->
+                <div class="flex-none w-[90%] md:w-[400px] snap-center bg-[#1A1A1A] p-8 border border-white/5 rounded relative transition-transform hover:-translate-y-2 duration-300">
+                    <i class="fas fa-quote-left text-4xl text-[#C5A059]/10 absolute top-8 left-8"></i>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-8 relative z-10 mt-6">"The remote acquisition process was flawless. My legal team reviewed the C of O, and the digital walkthroughs made me feel like I was standing right inside the penthouse."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gray-800 overflow-hidden border border-[#C5A059]/30">
+                            <!-- Placeholder portrait from Unsplash -->
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&q=80" class="w-full h-full object-cover" alt="Investor">
+                        </div>
+                        <div>
+                            <h4 class="text-white font-serif text-md">Chief O. Adeleke</h4>
+                            <p class="text-[#C5A059] text-[9px] uppercase tracking-widest mt-1">Diaspora Investor (UK)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="flex-none w-[90%] md:w-[400px] snap-center bg-[#1A1A1A] p-8 border border-white/5 rounded relative transition-transform hover:-translate-y-2 duration-300">
+                    <i class="fas fa-quote-left text-4xl text-[#C5A059]/10 absolute top-8 left-8"></i>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-8 relative z-10 mt-6">"Aura Luxe doesn't just sell houses; they curate lifestyles. The biometric security and smart home integrations in the Obsidian Manor are years ahead of the Nigerian market."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gray-800 overflow-hidden border border-[#C5A059]/30">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&q=80" class="w-full h-full object-cover" alt="Investor">
+                        </div>
+                        <div>
+                            <h4 class="text-white font-serif text-md">Dr. Amina Y.</h4>
+                            <p class="text-[#C5A059] text-[9px] uppercase tracking-widest mt-1">Tech Executive (Lagos)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="flex-none w-[90%] md:w-[400px] snap-center bg-[#1A1A1A] p-8 border border-white/5 rounded relative transition-transform hover:-translate-y-2 duration-300">
+                    <i class="fas fa-quote-left text-4xl text-[#C5A059]/10 absolute top-8 left-8"></i>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-8 relative z-10 mt-6">"I was skeptical about off-plan investments, but their transparent 24-month payment structure and absolute adherence to delivery timelines earned my total trust."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gray-800 overflow-hidden border border-[#C5A059]/30">
+                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&q=80" class="w-full h-full object-cover" alt="Investor">
+                        </div>
+                        <div>
+                            <h4 class="text-white font-serif text-md">Marcus T.</h4>
+                            <p class="text-[#C5A059] text-[9px] uppercase tracking-widest mt-1">Venture Capitalist</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+<!-- TRUST & AUTHORITY PARTNERS -->
+    <section class="py-12 bg-[#0A0A0A] relative z-10 border-t border-white/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <p class="text-center text-gray-500 text-[10px] uppercase tracking-[4px] mb-8" data-aos="fade-up">Financing & Legal Partners</p>
+            
+            <div class="flex flex-wrap justify-center items-center gap-10 md:gap-20" data-aos="fade-up" data-aos-delay="100">
+                <!-- Partner 1 -->
+                <div class="text-gray-600 hover:text-[#C5A059] hover:scale-105 transition-all duration-300 flex items-center gap-3 text-lg font-serif cursor-pointer">
+                    <i class="fas fa-building-columns text-2xl"></i> FirstBank
+                </div>
+                <!-- Partner 2 -->
+                <div class="text-gray-600 hover:text-[#C5A059] hover:scale-105 transition-all duration-300 flex items-center gap-3 text-lg font-serif cursor-pointer">
+                    <i class="fas fa-shield-halved text-2xl"></i> REDAN Certified
+                </div>
+                <!-- Partner 3 -->
+                <div class="text-gray-600 hover:text-[#C5A059] hover:scale-105 transition-all duration-300 flex items-center gap-3 text-lg font-serif cursor-pointer">
+                    <i class="fas fa-landmark text-2xl"></i> Stanbic IBTC
+                </div>
+                <!-- Partner 4 -->
+                <div class="text-gray-600 hover:text-[#C5A059] hover:scale-105 transition-all duration-300 flex items-center gap-3 text-lg font-serif cursor-pointer">
+                    <i class="fas fa-scale-balanced text-2xl"></i> EFCC SCUML
+                </div>
+            </div>
+            
+        </div>
+    </section>
 
 <footer id="contact" class="bg-[#050505] pt-20 pb-10 border-t border-white/5 px-10">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
