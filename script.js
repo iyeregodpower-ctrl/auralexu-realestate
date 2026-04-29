@@ -17,7 +17,7 @@ const properties = [
             "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80", 
             "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0", 
             "https://images.unsplash.com/photo-1560448204-61dc36dc98c8",
-            "https://images.unsplash.com/photo-1512917774080-9991f1c4c750", // Added more images to show off the swipe!
+            "https://images.unsplash.com/photo-1512917774080-9991f1c4c750", 
             "https://images.unsplash.com/photo-1613490493576-7fde63acd811"
         ]
     },
@@ -329,7 +329,7 @@ function submitLead(event) {
     closeBrochureModal();
 }
 
-// 10. CRASH-PROOF EVENT LISTENERS
+// 10. CRASH-PROOF SCROLL & ONE-TIME LOADER LOGIC
 window.addEventListener('scroll', () => {
     const progressBar = document.getElementById('scroll-progress');
     if (progressBar) {
@@ -338,19 +338,50 @@ window.addEventListener('scroll', () => {
     }
 });
 
-window.addEventListener('load', () => {
-    const loader = document.getElementById('loader');
-    const bar = document.getElementById('loader-bar');
-    
-    if (bar) {
-        bar.style.transition = "transform 1s ease";
-        bar.style.transform = "translateX(0)";
-    }
-    
+// Grab the loader element
+const loader = document.getElementById('loader');
+
+// Check the browser's temporary memory (Session Storage)
+if (sessionStorage.getItem('hasSeenAuraLoader') === 'true') {
+    // If they have already seen the loader this session, instantly delete it
     if (loader) {
-        setTimeout(() => {
-            loader.style.opacity = "0";
-            setTimeout(() => loader.remove(), 700);
-        }, 1200);
+        loader.style.display = 'none';
+        loader.remove();
+    }
+} else {
+    // If it is their very first time opening the website, save that fact to memory
+    sessionStorage.setItem('hasSeenAuraLoader', 'true');
+    
+    // And allow the animation to play normally
+    window.addEventListener('load', () => {
+        const bar = document.getElementById('loader-bar');
+        
+        if (bar) {
+            bar.style.transition = "transform 1s ease";
+            bar.style.transform = "translateX(0)";
+        }
+        
+        if (loader) {
+            setTimeout(() => {
+                loader.style.opacity = "0";
+                setTimeout(() => loader.remove(), 700);
+            }, 1200);
+        }
+    });
+}
+
+// 11. BFCache / BACK BUTTON BUG FIXER
+window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+        // If the phone served a frozen page via back button, make sure the loader is dead
+        if (loader) loader.remove();
+        
+        // Force the invisible animation cards to instantly show
+        const cards = document.querySelectorAll('.property-card');
+        cards.forEach(card => {
+            card.style.opacity = '1';
+            card.style.transform = 'none';
+        });
+        if (typeof AOS !== 'undefined') AOS.refresh();
     }
 });
