@@ -17,7 +17,7 @@ const properties = [
             "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80", 
             "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0", 
             "https://images.unsplash.com/photo-1560448204-61dc36dc98c8",
-            "https://images.unsplash.com/photo-1512917774080-9991f1c4c750", 
+            "https://images.unsplash.com/photo-1512917774080-9991f1c4c750", // Added more images to show off the swipe!
             "https://images.unsplash.com/photo-1613490493576-7fde63acd811"
         ]
     },
@@ -252,7 +252,7 @@ function renderDetails() {
         <section class="max-w-6xl mx-auto px-6 py-10">
             <div class="flex justify-between items-end mb-6">
                 <h2 class="text-3xl font-serif italic">Inside the Residence</h2>
-                <span class="text-[#C5A059] text-xs uppercase tracking-widest">Swipe to view →</span>
+                <span class="text-[#C5A059] text-xs uppercase tracking-widest">Swipe to view &rarr;</span>
             </div>
             
             <div class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-6" style="scrollbar-width: none; -ms-overflow-style: none;">
@@ -291,6 +291,7 @@ function renderDetails() {
         </div>
     `;
     
+    // Tiny snippet to hide scrollbar for webkit browsers on the carousel
     const style = document.createElement('style');
     style.innerHTML = `::-webkit-scrollbar { display: none; }`;
     document.head.appendChild(style);
@@ -328,7 +329,7 @@ function submitLead(event) {
     closeBrochureModal();
 }
 
-// 10. BULLETPROOF SCROLL & LOADER LOGIC
+// 10. CRASH-PROOF EVENT LISTENERS
 window.addEventListener('scroll', () => {
     const progressBar = document.getElementById('scroll-progress');
     if (progressBar) {
@@ -337,42 +338,19 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Run loader safely without waiting for heavy videos
-document.addEventListener("DOMContentLoaded", () => {
+window.addEventListener('load', () => {
     const loader = document.getElementById('loader');
     const bar = document.getElementById('loader-bar');
     
-    if (bar) bar.style.transform = "translateX(0)";
+    if (bar) {
+        bar.style.transition = "transform 1s ease";
+        bar.style.transform = "translateX(0)";
+    }
     
     if (loader) {
         setTimeout(() => {
             loader.style.opacity = "0";
-            setTimeout(() => { loader.style.display = "none"; loader.remove(); }, 500);
-        }, 800);
-    }
-});
-
-// 11. THE "DOM JIGGLE" BFCache FIX (Forces Mobile Safari to Unfreeze)
-window.addEventListener('pageshow', function (event) {
-    // If the phone restores the page from frozen memory (back button)
-    if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
-        
-        // 1. Destroy the loading screen instantly if it got stuck
-        const loader = document.getElementById('loader');
-        if (loader) { loader.style.display = 'none'; loader.remove(); }
-
-        // 2. THE JIGGLE: Hide and show the whole website to jolt the graphics engine
-        document.body.style.display = 'none';
-        setTimeout(() => {
-            document.body.style.display = 'block';
-            
-            // 3. Force all AOS-hidden cards to become visible
-            const cards = document.querySelectorAll('.property-card');
-            cards.forEach(card => {
-                card.style.opacity = '1';
-                card.style.transform = 'none';
-            });
-            
-        }, 10); // 10 milliseconds is so fast the human eye won't even see it blink
+            setTimeout(() => loader.remove(), 700);
+        }, 1200);
     }
 });
