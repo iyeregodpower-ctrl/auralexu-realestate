@@ -8,7 +8,7 @@ const properties = [
         category: "Duplex",
         isSold: false,
         mainVideo: "./videos/home.mp4",
-        thumbnail: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
+        thumbnail: "img/img1.jfif",
         amenities: { beds: 5, baths: 6, size: "4,500 sqft" },
         description: "A masterpiece of modern architecture featuring smart home integration and a private infinity pool.",
         roi: { yield: "12% - 15%", appreciation: "20% YOY", title: "Governor's Consent" },
@@ -29,7 +29,7 @@ const properties = [
         category: "Penthouse",
         isSold: false,
         mainVideo: "./videos/penthouse.mp4",
-        thumbnail: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
+        thumbnail: "img/img2.jfif",
         amenities: { beds: 4, baths: 4, size: "3,200 sqft" },
         description: "Experience the clouds with 360-degree views of the Atlantic Ocean and world-class finishes.",
         roi: { yield: "10% - 12%", appreciation: "15% YOY", title: "C of O" },
@@ -48,7 +48,7 @@ const properties = [
         category: "Mansion",
         isSold: false,
         mainVideo: "./videos/lakeside.mp4",
-        thumbnail: "https://images.unsplash.com/photo-1613490493576-7fde63acd811",
+        thumbnail: "img/img3.jfif",
         amenities: { beds: 6, baths: 7, size: "6,000 sqft" },
         description: "A lush retreat featuring floor-to-ceiling glass walls and a private cinema room.",
         roi: { yield: "14% - 18%", appreciation: "22% YOY", title: "Governor's Consent" },
@@ -67,7 +67,7 @@ const properties = [
         category: "Smart Villa",
         isSold: false,
         mainVideo: "./videos/land.mp4",
-        thumbnail: "https://images.unsplash.com/photo-1628624747186-a941c476b7ef",
+        thumbnail: "img/img4.jfif",
         amenities: { beds: 6, baths: 7, size: "7,200 sqft" },
         description: "An ultra-modern sanctuary boasting dark brutalist architecture, biometric security, and a state-of-the-art underground auto gallery.",
         roi: { yield: "8% - 10%", appreciation: "12% YOY", title: "Global C of O" },
@@ -458,36 +458,3 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// 14. MOBILE MENU LOGIC
-document.addEventListener('DOMContentLoaded', () => {
-    const mobileBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileLinks = document.querySelectorAll('.mobile-link');
-    
-    if(!mobileBtn) return;
-
-    const icon = mobileBtn.querySelector('i');
-
-    // Open/Close menu when clicking the hamburger icon
-    mobileBtn.addEventListener('click', () => {
-        const isOpen = mobileMenu.classList.contains('opacity-100');
-        if (isOpen) {
-            mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
-            mobileMenu.classList.add('opacity-0', 'pointer-events-none');
-            icon.classList.replace('fa-times', 'fa-bars');
-        } else {
-            mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
-            mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
-            icon.classList.replace('fa-bars', 'fa-times');
-        }
-    });
-
-    // Close menu automatically when a link is clicked
-    mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
-            mobileMenu.classList.add('opacity-0', 'pointer-events-none');
-            icon.classList.replace('fa-times', 'fa-bars');
-        });
-    });
-});
