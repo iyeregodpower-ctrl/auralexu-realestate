@@ -121,3 +121,9 @@ body {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
+
+/* Mobile Click-to-Play Logic */
+.card-video.is-active {
+    opacity: 1;
+    z-index: 10;
+}

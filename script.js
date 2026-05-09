@@ -102,7 +102,7 @@ function loadGallery(dataToLoad) {
         const buttonClass = isSold ? 'opacity-50 cursor-not-allowed pointer-events-none' : '';
 
         grid.innerHTML += `
-            <div class="property-card relative" data-aos="fade-up" ${isSold ? '' : `onclick="goToDetails('${house.id}')"`}>
+            <div class="property-card relative" data-aos="fade-up">
                 ${soldBadge}
                 <div class="media-container ${soldOverlay}">
                     <img src="${house.thumbnail}" alt="${house.name}">
@@ -118,7 +118,7 @@ function loadGallery(dataToLoad) {
                     </div>
                     <div class="flex items-center justify-between mt-6">
                         <span class="text-2xl font-bold text-white">${house.price}</span>
-                        <span class="view-btn ${buttonClass}">${buttonText}</span>
+                        <span class="view-btn ${buttonClass}" ${isSold ? '' : `onclick="goToDetails('${house.id}')"`}>${buttonText}</span>
                     </div>
                 </div>
             </div>
@@ -132,13 +132,55 @@ function goToDetails(id) {
     window.location.href = `property-details.html?id=${id}`;
 }
 
-// 5. VIDEO HOVER EFFECTS
+// 5. VIDEO HOVER & CLICK-TO-PLAY EFFECTS
 function setupHovers() {
+    const isTouchDevice = matchMedia('(hover: none)').matches;
+
     document.querySelectorAll('.property-card').forEach(card => {
         const video = card.querySelector('video');
+        
         if (video) { 
-            card.addEventListener('mouseenter', () => video.play());
-            card.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
+            if (isTouchDevice) {
+                // MOBILE LOGIC: Wait for a deliberate click
+                card.addEventListener('click', (e) => {
+                    
+                    // IMPORTANT: If they clicked the 'View Details' button, don't trigger the video logic.
+                    // Just let the button take them to the details page.
+                    if (e.target.classList.contains('view-btn')) return;
+
+                    // 1. Find all other videos, pause them, and hide them
+                    document.querySelectorAll('.card-video').forEach(v => {
+                        if (v !== video) {
+                            v.pause();
+                            v.currentTime = 0;
+                            v.classList.remove('is-active'); // Hides the video, shows the image
+                        }
+                    });
+
+                    // 2. Toggle the video on the card they just clicked
+                    if (video.classList.contains('is-active')) {
+                        // If it's already playing, clicking it again pauses it and shows the image
+                        video.pause();
+                        video.classList.remove('is-active');
+                    } else {
+                        // If it's not playing, show the video and play it
+                        video.classList.add('is-active');
+                        video.play();
+                    }
+                });
+
+            } else {
+                // DESKTOP LOGIC: Normal mouse hover
+                card.addEventListener('mouseenter', () => {
+                    video.classList.add('is-active');
+                    video.play();
+                });
+                card.addEventListener('mouseleave', () => { 
+                    video.classList.remove('is-active');
+                    video.pause(); 
+                    video.currentTime = 0; 
+                });
+            }
         }
     });
 }
@@ -458,3 +500,88 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// 14. MOBILE MENU LOGIC
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            // Check if menu is currently hidden
+            const isClosed = mobileMenu.classList.contains('opacity-0');
+
+            if (isClosed) {
+                // Open Menu
+                mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+                mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>'; // Change to X
+            } else {
+                // Close Menu
+                mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
+                mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>'; // Change back to hamburger
+            }
+        });
+
+        // Close the menu automatically when a link is clicked
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
+                mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+    }
+});
+
+// 14. ULTIMATE MOBILE MENU LOGIC
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+    
+    // We use a simple true/false switch to keep track of the menu state
+    let isMenuOpen = false;
+
+    // Helper Function: Close the menu
+    const closeMenu = () => {
+        mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
+        mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>'; // Changes back to Hamburger
+        isMenuOpen = false;
+    };
+
+    // Helper Function: Open the menu
+    const openMenu = () => {
+        mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+        mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
+        mobileMenuBtn.innerHTML = '<i class="fas fa-times text-[#C5A059]"></i>'; // Changes to Gold 'X'
+        isMenuOpen = true;
+    };
+
+    if (mobileMenuBtn && mobileMenu) {
+        
+        // 1. The Main Toggle Button (Handles both opening and closing)
+        mobileMenuBtn.addEventListener('click', () => {
+            if (isMenuOpen) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+
+        // 2. Close automatically when any link is tapped
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        // 3. Premium Feature: Cancel/Close when tapping the empty dark background
+        mobileMenu.addEventListener('click', (e) => {
+            // Only close if they clicked the background container itself
+            if (e.target === mobileMenu) {
+                closeMenu();
+            }
+        });
+    }
+});
